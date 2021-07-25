@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/css/variables.scss';
+@import "~bootstrap/scss/bootstrap";
+html, body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $secondery-color;
+    input{
+        outline: none;
+    }
+}

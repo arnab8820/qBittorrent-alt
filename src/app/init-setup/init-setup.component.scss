@@ -1,0 +1,72 @@
+@import "../../assets/css/variables.scss";
+
+.setup-wrapper{
+    width: 100%;
+    height: calc(100% - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.setup{
+    width: 600px;
+    min-height: 300px;
+    border: 1px solid $border-color;
+    box-shadow: 4px 4px 10px 0px $shadow-color;
+}
+
+.legend{
+    background-color: $primary-color;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    .legend-wrapper{
+        text-align: center;
+        img{
+            width: 50%;
+            height: auto;
+        }
+        div{
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: $secondery-text-color;
+        }
+    }
+}
+
+.setup-form{
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .form{
+        input{
+            width: 100%;
+            border: 1px solid $border-color;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .footer-bar{
+        text-align: right;
+        button{
+            border: 0;
+            font-size: 14px;
+            color: $secondery-text-color;
+            padding: 5px 15px;
+            border-radius: 3px;
+        }:enabled{
+            background-color: $primary-color;
+        }:disabled{
+            background-color: $disabled-button-color;
+        }:hover:enabled{
+            background-color: $highlight-color;
+            cursor: pointer;
+        }
+    }
+}

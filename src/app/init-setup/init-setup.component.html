@@ -1,0 +1,29 @@
+<div class="setup-wrapper">
+    <div class="setup row">
+        <div class="legend col-md-4">
+            <div class="legend-wrapper">
+                <img src="../../assets/icons/pngegg.png" alt="settings logo">
+                <div>Initial Setup</div>
+            </div>
+        </div>
+        <div class="setup-form col-md-8">
+            <div class="form">
+                <input 
+                    type="text" 
+                    [(ngModel)]="formData.hostUrl" 
+                    name="hosturl" 
+                    placeholder="Host URL(http://192.168.1.100:8080)"
+                    (change)="handleHostUrl()">
+                <input 
+                    type="text" 
+                    [(ngModel)]="formData.apiUrl" 
+                    name="hosturl" 
+                    placeholder="API Address(Auto-generated)" 
+                    disabled>
+            </div>
+            <div class="footer-bar">
+                <button [disabled]="!canSubmit()" (click)="handleSubmit()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
