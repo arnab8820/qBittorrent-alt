@@ -28,7 +28,7 @@
                 <input [(ngModel)]="formData.password" type="password" name="password" placeholder="Password">
             </div>
             <div class="footer">
-                <span class="error-text"></span>
+                <span class="error-text">{{errorText}}</span>
                 <button [disabled]="!canSubmit()" (click)="handleLogin()">Login</button>
             </div>
         </div>

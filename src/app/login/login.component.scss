@@ -64,8 +64,9 @@
                 justify-content: space-between;
                 align-items: flex-end;
                 .error-text{
-                    font-size: 12px;
-                    color: red;
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: $error-text-color;
                     text-shadow: 0px 0px 10px $secondery-text-color;
                 }
                 button{
