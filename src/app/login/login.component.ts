@@ -1,6 +1,8 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceService } from '../services/api-service.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Auth } from '../urls';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +14,16 @@ export class LoginComponent implements OnInit {
   formData:any = {
     username: "",
     password: ""
-  }
+  };
+  errorText:string = "";
 
-  constructor(private api:ApiServiceService) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    if(await this.auth.isLoggedIn()){
+      console.log("already logged in");
+      this.router.navigate(['/']);
+    }
   }
 
   canSubmit(){
@@ -26,10 +33,16 @@ export class LoginComponent implements OnInit {
   handleLogin(){
     const reqBody = new HttpParams().set("username", this.formData.username).set("password", this.formData.password);
 
-    const headers = new HttpHeaders();
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    this.api.postData("/auth/login", reqBody, {headers: headers}).subscribe(data=>{
-      console.log(data);
+    this.auth.login(Auth.login, reqBody).subscribe((data:any)=>{
+      if(data&&data.status===200&&data.body==="Ok."){
+        console.log("Logged In, Redirecting...");
+        this.router.navigate(['/']);
+      } else if(data&&data.status===200&&data.body==="Fails."){
+        console.log("Invalid data");
+        this.errorText = "Invalid credentials!"
+      } else {
+        this.errorText = "Unable to reach server!"
+      }
     })
   }
 

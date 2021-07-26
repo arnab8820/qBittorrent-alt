@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import { promise } from 'protractor';
-import { ApiServiceService } from './api-service.service';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate{
+  logInStatus: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor(private api:ApiServiceService) { }
+  constructor(private auth: AuthService) { }
 
   canActivate(){
-    return new Promise<boolean>((resolve, reject)=>{
-      this.api.getData("/app/version").subscribe(data=>{
-        console.log(data);
-        resolve(true);
-      });
-    });    
+    return this.auth.isLoggedIn();
   }
 }

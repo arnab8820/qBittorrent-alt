@@ -20,13 +20,9 @@ export class ApiServiceService {
     
   }
 
-  postData(url:string, body: any, headers?:any){
+  postData(url:string, body: any, options?:any){
     if(this.baseUrl!==null){
-      if(headers){
-        return this.http.post(this.baseUrl+url, body, headers);
-      } else {
-        return this.http.post(this.baseUrl+url, body);
-      }
+      return this.http.post(this.baseUrl+url, body, options);
     }
   }
 }

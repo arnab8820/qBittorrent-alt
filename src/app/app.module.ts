@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { ApiInterceptorService } from './services/api-interceptor.service';
 import { LoginComponent } from './login/login.component';
 import { AppBodyComponent } from './app-body/app-body.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import { AppBodyComponent } from './app-body/app-body.component';
     NavbarComponent,
     InitSetupComponent,
     LoginComponent,
-    AppBodyComponent
+    AppBodyComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +29,8 @@ import { AppBodyComponent } from './app-body/app-body.component';
     HttpClientModule
   ],
   providers: [
+    AuthService,
+    AuthGuardService,
     {provide: HTTP_INTERCEPTORS, useClass: ApiInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
